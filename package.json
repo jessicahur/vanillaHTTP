@@ -1,0 +1,25 @@
+{
+  "name": "vanilla-http",
+  "version": "1.0.0",
+  "description": "",
+  "main": "http.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "gulp testing"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessicahur/vanillaHTTP.git"
+  },
+  "author": "Jessica Hur",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jessicahur/vanillaHTTP/issues"
+  },
+  "homepage": "https://github.com/jessicahur/vanillaHTTP#readme",
+  "devDependencies": {
+    "gulp-mocha": "^2.2.0"
+  }
+}

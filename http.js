@@ -9,6 +9,10 @@ var server = http.createServer(function(req, res) {
     res.write(timeNow);
     res.end();
   }
+  else if (path.substring(0, 7) === '/greet/' && req.method === 'GET'){
+    res.write('Hi there, ' + path.substring(7, path.length));
+    res.end();
+  }
 });
 
 server.listen(9000);
