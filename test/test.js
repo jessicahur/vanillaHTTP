@@ -2,6 +2,7 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 var server = require('../server');
 var expect = chai.expect;
+var assert = chai.assert;
 
 chai.use(chaiHttp);
 
@@ -24,6 +25,8 @@ describe('VANILLA HTTP', function() {
           expect(err).to.be.null;
           expect(res).to.have.status(200);
           expect(res).to.be.text;
+          var greeting = res.body.toString();
+          assert.equal(greeting, 'Hi there, paul');
         });
   });
 
@@ -35,6 +38,8 @@ describe('VANILLA HTTP', function() {
           expect(err).to.be.null;
           expect(res).to.have.status(200);
           expect(res).to.be.text;
+          var greeting = res.body.toString();
+          assert.equal(greeting, 'Hello there paul. How are you doing?')
         });
   });
 });
