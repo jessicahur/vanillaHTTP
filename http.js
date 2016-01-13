@@ -12,21 +12,27 @@ function simpleHttp (db) {
       res.end();
     }
 
-    else if (path.substring(0, 7) === '/greet/' && req.method === 'GET'){
-      res.write('Hi there, ' + path.substring(7, path.length));
-      res.end();
-    }
-
-    else if (path.substring(0, 7) === '/greet/' && req.method === 'POST'){
-      var nameVal = path.substring(7, path.length);
-      console.log(nameVal);
-      db.push({name: nameVal});
-      res.write(JSON.stringify(db));
-      res.end();
+    else if (path.substring(0, 6) === '/greet'){
+      if (req.method === 'GET'){
+        res.write('Hi there, ' + path.substring(7, path.length));
+        res.end();
+      }
+      else if (req.method === 'POST'){
+        var name = '';
+        req.on('data', function(data) {
+          body = JSON.parse(data.toString()).name;
+          res.write('Hello there '+body+'. How are you doing?');
+          res.end();
+        });
+      }
     }
   });
 
-  server.listen(9000);
+  server.listen(9000, function(){
+    console.log('Server started. Listening on port 9000...');
+  });
 }
 
-module.exports = simpleHttp;
+var db = [];
+simpleHttp(db);
+// module.exports = simpleHttp;
