@@ -13,6 +13,7 @@ describe('VANILLA HTTP', function() {
       .end(function(err, res){
         expect(err).to.be.null;
         expect(res).to.have.status(200);
+        expect(res).to.be.text;
       });
   });
 
