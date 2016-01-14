@@ -20,9 +20,6 @@ var server = http.createServer(function(req, res) {
     }
     else if (req.method === 'POST'){
       var name = '';
-      // body = JSON.parse(data.toString()).name;
-      // res.write('Hello there '+'. How are you doing?');
-      // res.end();
       req.on('data', function(data) {
         res.writeHead(200, {'Content-Type': 'text/plain'});
         body = JSON.parse(data.toString()).name;
