@@ -22,12 +22,11 @@ describe('VANILLA HTTP', function() {
     chai.request(server)
         .get('/greet/paul')
         .end(function(err, res) {
-          console.log(res);
           expect(err).to.be.null;
           expect(res).to.have.status(200);
-          var greeting = res.body;
-          console.log('greeting', greeting);
-          // assert.equal(greeting, 'Hi there, paul');
+          expect(res).to.have.header('content-type', 'text/plain');
+          var greeting = res.text;
+          assert.equal(greeting, 'Hi there, paul');
           done();
         });
   });
@@ -35,13 +34,12 @@ describe('VANILLA HTTP', function() {
   it('should response to the POST method of /greet with the correct string', function(done) {
     chai.request(server)
         .post('/greet')
-        .send({"name": "paul"})
+        .send({name: "paul"})
         .end(function(err, res) {
           expect(err).to.be.null;
           expect(res).to.have.status(200);
-          var greeting = res.body;
-          console.log('greeting 2', greeting);
-          // assert.equal(greeting, 'Hello there paul. How are you doing?');
+          var greeting = res.text;
+          assert.equal(greeting, 'Hello there paul. How are you doing?');
           done();
         });
   });

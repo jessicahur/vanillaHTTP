@@ -14,12 +14,17 @@ var server = http.createServer(function(req, res) {
 
   else if (path.substring(0, 6) === '/greet'){
     if (req.method === 'GET'){
+      res.writeHead(200, {'Content-Type': 'text/plain'});
       res.write('Hi there, ' + path.substring(7, path.length));
       res.end();
     }
     else if (req.method === 'POST'){
       var name = '';
+      // body = JSON.parse(data.toString()).name;
+      // res.write('Hello there '+'. How are you doing?');
+      // res.end();
       req.on('data', function(data) {
+        res.writeHead(200, {'Content-Type': 'text/plain'});
         body = JSON.parse(data.toString()).name;
         res.write('Hello there '+body+'. How are you doing?');
         res.end();
